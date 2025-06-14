@@ -12,6 +12,9 @@ This is a template repository for AWS Lambda functions using Node.js 22 and Type
 - API Gateway integration
 - Example Lambda function with error handling
 - Comprehensive test suite
+- Conventional commits with commitlint
+- Pre-commit hooks with husky
+- Automated testing and linting
 
 ## Prerequisites
 
@@ -71,6 +74,50 @@ The project structure is organized as follows:
 - `npm run lint` - Run ESLint
 - `npm run format` - Format code with Prettier
 - `npm run clean` - Remove compiled files
+- `npm run commit` - Create a conventional commit using commitizen
+
+### Commit Standards
+
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification. Commit messages should be structured as follows:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Types include:
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code changes that neither fix bugs nor add features
+- `perf`: Performance improvements
+- `test`: Adding or modifying tests
+- `chore`: Changes to the build process or auxiliary tools
+- `ci`: Changes to CI configuration files and scripts
+- `build`: Changes that affect the build system or external dependencies
+- `revert`: Reverts a previous commit
+
+To create a commit, use:
+
+```bash
+npm run commit
+```
+
+This will guide you through creating a conventional commit message.
+
+### Pre-commit Hooks
+
+The following checks are run automatically before each commit:
+
+- Code formatting with Prettier
+- Linting with ESLint
+- Running tests
+- Validating commit message format
 
 ### Testing
 

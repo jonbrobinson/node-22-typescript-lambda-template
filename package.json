@@ -11,7 +11,10 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean"
+    "prebuild": "npm run clean",
+    "prepare": "husky",
+    "commit": "git-cz",
+    "commitlint": "commitlint --edit"
   },
   "keywords": [
     "aws",
@@ -25,16 +28,34 @@
     "@aws-sdk/lib-dynamodb": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/cz-commitlint": "^19.8.1",
     "@types/aws-lambda": "^8.10.136",
     "@types/node": "^20.11.24",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
+    "commitizen": "^4.3.0",
     "eslint": "^8.57.0",
+    "husky": "9.1.7",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "vitest": "3.2.3"
   },
   "engines": {
     "node": ">=22.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint --fix",
+      "vitest run"
+    ]
   }
 }
