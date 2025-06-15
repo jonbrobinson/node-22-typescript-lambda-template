@@ -8,7 +8,6 @@ This is a template repository for AWS Lambda functions using Node.js 22 and Type
 - TypeScript support with strict type checking
 - Vitest for testing
 - ESLint and Prettier for code quality
-- AWS SAM template for deployment
 - API Gateway integration
 - Example Lambda function with error handling
 - Comprehensive test suite
@@ -20,7 +19,6 @@ This is a template repository for AWS Lambda functions using Node.js 22 and Type
 
 - Node.js 22 or later (use `nvm use` to automatically switch to the correct version)
 - AWS CLI configured with appropriate credentials
-- AWS SAM CLI installed
 - Docker (for local testing)
 
 ## Getting Started
@@ -59,7 +57,6 @@ The project structure is organized as follows:
 │   ├── index.ts           # Main Lambda handler
 │   └── index.test.ts      # Tests
 ├── dist/                   # Compiled JavaScript (generated)
-├── template.yaml          # AWS SAM template
 ├── package.json           # Project configuration
 ├── tsconfig.json          # TypeScript configuration
 ├── vitest.config.ts       # Vitest configuration
@@ -160,13 +157,7 @@ npm run test:watch
 To test the Lambda function locally:
 
 ```bash
-sam local start-api
-```
-
-This will start a local API Gateway that you can test with:
-
-```bash
-curl -X POST http://localhost:3000/hello -H "Content-Type: application/json" -d '{"test":"data"}'
+npm run test
 ```
 
 ## Deployment
@@ -177,9 +168,9 @@ curl -X POST http://localhost:3000/hello -H "Content-Type: application/json" -d 
    npm run build
    ```
 
-2. Deploy using SAM:
+2. Deploy using AWS CLI:
    ```bash
-   sam deploy --guided
+   aws lambda update-function-code --function-name your-function-name --zip-file fileb://dist/index.zip
    ```
 
 Follow the prompts to complete the deployment. The output will include the API endpoint URL.
@@ -187,9 +178,8 @@ Follow the prompts to complete the deployment. The output will include the API e
 ## Customization
 
 1. Modify `src/index.ts` to implement your Lambda function logic
-2. Update `template.yaml` to configure AWS resources
-3. Add new dependencies in `package.json`
-4. Extend the test suite in `src/index.test.ts`
+2. Add new dependencies in `package.json`
+3. Extend the test suite in `src/index.test.ts`
 
 ## Contributing
 
