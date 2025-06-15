@@ -14,7 +14,8 @@
     "prebuild": "npm run clean",
     "prepare": "husky",
     "commit": "git-cz",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "build:lambda": "npm run build && cd dist && zip -r ../lambda.zip ."
   },
   "keywords": [
     "aws",
